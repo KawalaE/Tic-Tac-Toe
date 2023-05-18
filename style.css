@@ -16,3 +16,6 @@ body{
 .cubes{
     display: flex;
 }
+.red{
+    background-color: red;
+}

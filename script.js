@@ -1,6 +1,5 @@
-const gameDisplay = document.getElementById('game-display');
-
 const gameBoard = (() =>{
+    const gameDisplay = document.getElementById('game-display');
     const gameBoardArr = [];
     const horizontalArr = [];
     for (let verCube = 0; verCube <= 2; verCube++){
@@ -15,7 +14,26 @@ const gameBoard = (() =>{
         }
         gameBoardArr[verCube] = horizontalArr;
     }
+    
     return gameBoardArr;
 })();
 
-console.log(gameBoard);
+const Player = (marker) => {
+    return {marker}
+}
+
+function gameLogic(){
+    const xButton = document.getElementById('X-marker');
+    const oButton = document.getElementById('O-marker');
+    xButton.addEventListener('click', () =>{
+        console.log("X was chosen");
+        const playerOne = Player('X');
+    });
+    oButton.addEventListener('click', () =>{
+        console.log("O was chosen");
+        const playerOne = Player('O');
+    });
+}
+gameLogic();
+
+
