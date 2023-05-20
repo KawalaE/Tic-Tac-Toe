@@ -1,30 +1,29 @@
+/**gameboard module ->  board render function */
 const gameBoard = (() =>{
     const board = ['', '','', '','', '','', '',''];
     const gameDisplay = document.getElementById('game-display')
-    const render = (marker) => board.forEach((element) =>{
+    const createBoard = (marker) => board.forEach((_element, index) =>{
         const boardCube = document.createElement('div');
-        boardCube.textContent = element;
+        boardCube.id = index;
         boardCube.classList.add('cube'); 
         gameDisplay.appendChild(boardCube);
-        boardCube.addEventListener('click',()=>{
-            console.log('clicked')
-            boardCube.textContent = marker;
-            board[element] = marker;
-            console.log(board)
-        })
+        boardCube.addEventListener('click', markHandler)
     });
+
     return{
-        board,
-        render,
+        createBoard,
     }
 })();
-console.log(gameBoard);
-gameBoard.render('O');
 
-function gameLogic(){
+function markHandler(e){
+    const displayMark = document.createElement('div');
+    displayMark.classList.add('circle');
+    e.target.append(displayMark);
+}
+gameBoard.createBoard();
+const gameLogic = (() =>{
     const xChoice = document.getElementById('X-marker');
     xChoice.addEventListener('click', ()=>{
         console.log('X was choosen');
     });
-};
-gameLogic();
+})();

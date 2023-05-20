@@ -17,8 +17,7 @@ body{
     align-items: center;
     justify-content: center;
     box-sizing: border-box;
-    font-size:70px;
-    font-family: 'Quicksand', sans-serif;
+
 }
 #game-display{
     display: flex;
@@ -26,4 +25,11 @@ body{
     width: 300px;
     height: 300px;
     border: 2px solid black;
+}
+.circle{
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    border: 10px solid rgb(238, 148, 148);
+    box-sizing: border-box;
 }
