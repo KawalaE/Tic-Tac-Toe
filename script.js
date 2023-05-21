@@ -9,7 +9,7 @@ const gameBoard = (() =>{
         gameDisplay.appendChild(boardCube);
         boardCube.addEventListener('click', markHandler)
     });
-
+    
     return{
         createBoard,
     }
@@ -17,13 +17,7 @@ const gameBoard = (() =>{
 
 function markHandler(e){
     const displayMark = document.createElement('div');
-    displayMark.classList.add('circle');
+    displayMark.classList.add('cross');
     e.target.append(displayMark);
 }
 gameBoard.createBoard();
-const gameLogic = (() =>{
-    const xChoice = document.getElementById('X-marker');
-    xChoice.addEventListener('click', ()=>{
-        console.log('X was choosen');
-    });
-})();
