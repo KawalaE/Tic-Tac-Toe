@@ -1,5 +1,5 @@
 let gameStatus = document.querySelector('.status');
-
+const modal = document.querySelector('.modal');
 const gameBoard = (() =>{
     const board = ['', '','', '','', '','', '',''];
     const gameDisplay = document.getElementById('game-display');
@@ -17,7 +17,15 @@ const gameBoard = (() =>{
         createBoard
     }
 })();
-
+function modalHandler(){
+    window.onclick = function(e){
+        if (e.target == modal){
+            modal.close()
+            clearGameBoard();
+        }
+    }
+}
+modalHandler();
 function clearGameBoard(){
     document.querySelectorAll('.cube').forEach((cube)=>{
         if(cube.firstChild){
@@ -59,10 +67,12 @@ function checkScore(){
     winningCombos.forEach((winArray) =>{
         if(isSubset(crossMoves, winArray)){
             gameStatus.textContent = "X wins!";
+            modal.showModal();
             gamePause();
             
         }else if(isSubset(circleMoves, winArray)){
             gameStatus.textContent = "O wins!";
+            modal.showModal();
             gamePause()
         }
     })

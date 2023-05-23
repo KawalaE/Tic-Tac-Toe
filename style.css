@@ -1,4 +1,4 @@
-button {
+button{
     padding: 0;
     margin: 0;
     box-sizing: border-box;
@@ -7,6 +7,7 @@ button {
     border: none;
   }
 body{
+    position: relative;
     margin: 0;
     padding: 0;
     display: flex;
@@ -68,9 +69,6 @@ body{
     width: 100%;
     height: 25%;
     margin-top: -13%;
-}
-.status{
-    height: 20px;
 }
 
 button{
@@ -174,13 +172,15 @@ button:hover{
   }
 
 .footer-elements{
+    position: absolute;
     display:flex;
     align-items: center;
     justify-content: center;
     gap: 10px;
-    margin-top: auto;
     width: 100%;
     padding-bottom: 10px;
+    bottom: 0;
+    height: 2.5rem;
 }
 .footer{
     color: rgb(255, 255, 255);
@@ -188,4 +188,21 @@ button:hover{
 .footer-git:hover{
     transform: rotate(360deg) scale(1.1);
     transition-duration:0.5s;
+}
+.status{
+   font-size: 4rem;
+   text-align: center;
+   color: rgb(253, 250, 250);
+   font-weight: bolder;
+   text-shadow: -6px -1px 11px rgb(0, 0, 0);
+}
+
+.modal{
+    background-color: transparent;
+    width: 100%;
+    outline: none;
+    border: none
+}
+.modal::backdrop{
+    backdrop-filter: blur(5px);
 }
