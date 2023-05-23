@@ -24,8 +24,9 @@ function clearGameBoard(){
             cube.removeChild(cube.firstChild);
         }
         cube.addEventListener('click', markHandler)
-        
+        playerOne.setMarker();
     })
+    gameStatus.textContent = "";
 }
 let marker = '';
 function markHandler(e){

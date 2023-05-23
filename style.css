@@ -1,4 +1,11 @@
-
+button {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: inherit;
+    font-size: 100%;
+    border: none;
+  }
 body{
     margin: 0;
     padding: 0;
@@ -6,11 +13,13 @@ body{
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    min-height: 100vh;
     gap: 30px;
-    height: 100vh;
     background-color: rgb(44, 44, 44);
     font-family:sans-serif;
     color:white;
+    caret-color: transparent;
+
 }
 .cube{
     width: 100px;
@@ -35,16 +44,18 @@ body{
     border-radius: 50%;
     border: 10px solid rgb(238, 148, 148);
     box-sizing: border-box;
+   
 }
 .cross{
     width: 90px;
     height: 90px;
     transform: rotate(45deg);
+
 }
 .cross:before, .cross:after{
     content: "";
     position: absolute;
-    background-color: rgb(143, 143, 250);
+    background-color: rgb(143, 250, 157);
 }
 .cross:before{
     left:50%;
@@ -61,13 +72,21 @@ body{
 .status{
     height: 20px;
 }
+
 button{
-    width: 100px;
-    height: 40px;
-    font-size: 1.2rem;
-    border-radius: 12%;
+    background-color: transparent;
+    border: 1px solid white;
+    padding: 10px 20px;
+    color:white;
+    transition-duration: 0.4s;
+}
+button:hover{
+    background-color: white;
+    color:rgb(44, 44, 44);
+    transform: scale(1.05);
 }
 .glitch{
+    text-align: center;
     font-size: 4rem;
     text-transform: uppercase;
     position: relative;
@@ -153,3 +172,20 @@ button{
       transition-delay: 0s !important;
     }
   }
+
+.footer-elements{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: auto;
+    width: 100%;
+    padding-bottom: 10px;
+}
+.footer{
+    color: rgb(255, 255, 255);
+}
+.footer-git:hover{
+    transform: rotate(360deg) scale(1.1);
+    transition-duration:0.5s;
+}
