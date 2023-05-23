@@ -10,17 +10,20 @@ body{
     position: relative;
     margin: 0;
     padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
     min-height: 100vh;
-    gap: 30px;
     background-color: rgb(44, 44, 44);
     font-family:sans-serif;
     color:white;
     caret-color: transparent;
 
+}
+#content-wrap{
+    padding-bottom: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
 }
 .cube{
     width: 100px;
@@ -30,7 +33,10 @@ body{
     align-items: center;
     justify-content: center;
     box-sizing: border-box;
-
+    transition-duration: 0.4s;
+}
+.highlight:hover{
+    background-color: rgb(71, 71, 71);
 }
 #game-display{
     display: flex;
@@ -40,12 +46,11 @@ body{
     border: 2px solid white;
 }
 .circle{
-    width: 90px;
-    height: 90px;
+    width: 85px;
+    height: 85px;
     border-radius: 50%;
     border: 10px solid rgb(238, 148, 148);
     box-sizing: border-box;
-   
 }
 .cross{
     width: 90px;
@@ -77,6 +82,7 @@ button{
     padding: 10px 20px;
     color:white;
     transition-duration: 0.4s;
+    margin: 20px 0 40px 0;
 }
 button:hover{
     background-color: white;
@@ -172,13 +178,13 @@ button:hover{
   }
 
 .footer-elements{
-    position: absolute;
     display:flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
-    width: 100%;
+    gap: 10px; 
     padding-bottom: 10px;
+    width: 100%;
+    position:absolute;
     bottom: 0;
     height: 2.5rem;
 }

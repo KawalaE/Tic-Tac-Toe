@@ -6,6 +6,7 @@ const gameBoard = (() =>{
     const restartGame = document.querySelector('.restart');
     const createBoard = () => board.forEach((_element, index) =>{
         const boardCube = document.createElement('div');
+        boardCube.classList.add('highlight')
         boardCube.id = index+1;
         boardCube.classList.add('cube'); 
         gameDisplay.appendChild(boardCube);
@@ -38,6 +39,7 @@ function clearGameBoard(){
 }
 let marker = '';
 function markHandler(e){
+    e.target.classList.remove('highlight')
     const displayMark = document.createElement('div');
     displayMark.classList.add(marker);
     e.target.append(displayMark);
