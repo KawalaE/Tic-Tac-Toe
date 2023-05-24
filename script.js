@@ -32,7 +32,8 @@ function clearGameBoard(){
         if(cube.firstChild){
             cube.removeChild(cube.firstChild);
         }
-        cube.addEventListener('click', markHandler)
+        cube.addEventListener('click', markHandler);
+        cube.classList.add('highlight');
         playerOne.setMarker();
     })
     gameStatus.textContent = "";
