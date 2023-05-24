@@ -1,5 +1,6 @@
 let gameStatus = document.querySelector('.status');
 const modal = document.querySelector('.modal');
+let modalState = false;
 const gameBoard = (() =>{
     const board = ['', '','', '','', '','', '',''];
     const gameDisplay = document.getElementById('game-display');
@@ -22,7 +23,9 @@ function modalHandler(){
     window.onclick = function(e){
         if (e.target == modal){
             modal.close()
+            modalState=false;
             clearGameBoard();
+            availableMoves = [1,2,3,4,5,6,7,8,9]
         }
     }
 }
@@ -34,19 +37,36 @@ function clearGameBoard(){
         }
         cube.addEventListener('click', markHandler);
         cube.classList.add('highlight');
-        playerOne.setMarker();
+        availableMoves = [1,2,3,4,5,6,7,8,9]
     })
     gameStatus.textContent = "";
 }
-let marker = '';
+let availableMoves = [1,2,3,4,5,6,7,8,9];
+
+let marker = 'cross';
 function markHandler(e){
-    e.target.classList.remove('highlight')
+    e.target.classList.remove('highlight');
     const displayMark = document.createElement('div');
     displayMark.classList.add(marker);
+    availableMoves.splice(availableMoves.indexOf(Number(e.target.id)), 1);
     e.target.append(displayMark);
-    marker ==='cross' ? playerTwo.setMarker() : playerOne.setMarker();
+    console.log(availableMoves)
     e.target.removeEventListener('click', markHandler);
     checkScore();
+    computerMove();
+}
+function computerMove(){
+    if(availableMoves.length && modalState === false){
+        const randomId = availableMoves[Math.floor(Math.random()*availableMoves.length)];
+        const cube = document.getElementById(randomId);
+        availableMoves.splice(availableMoves.indexOf(randomId), 1);
+        const displayMark = document.createElement('div');
+        displayMark.classList.add('circle');
+        cube.append(displayMark);
+        cube.removeEventListener('click', markHandler)
+        checkScore();
+        console.log(availableMoves)
+    }
 }
 gameBoard.createBoard();
 
@@ -66,15 +86,17 @@ function checkScore(){
         [1,4,7], [2,5,8], [3,6,9],
         [1,5,9], [3,5,7]
     ]; 
-
+    
     winningCombos.forEach((winArray) =>{
         if(isSubset(crossMoves, winArray)){
             gameStatus.textContent = "X wins!";
+            modalState = true;
             modal.showModal();
             gamePause();
             
         }else if(isSubset(circleMoves, winArray)){
             gameStatus.textContent = "O wins!";
+            modalState = true;
             modal.showModal();
             gamePause()
         }
@@ -92,12 +114,4 @@ function gamePause(){
         cube.removeEventListener('click', markHandler);
     })
 }
-const Player = (mark) =>{
-    const setMarker = () =>{
-        marker = mark;
-    }
-    return {setMarker, mark}
-};
-const playerOne = Player('cross');
-const playerTwo = Player('circle');
-playerOne.setMarker();
+
