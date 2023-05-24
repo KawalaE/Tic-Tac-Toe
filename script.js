@@ -52,8 +52,8 @@ function markHandler(e){
     e.target.append(displayMark);
     console.log(availableMoves)
     e.target.removeEventListener('click', markHandler);
+    setTimeout(()=> computerMove(), 250);
     checkScore();
-    computerMove();
 }
 function computerMove(){
     if(availableMoves.length && modalState === false){
