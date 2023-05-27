@@ -1,21 +1,18 @@
 const gameDisplay = document.querySelector('#game-display');
 const winConfig= [
-    [1,2,3], [4,5,6], [7,8,9],
-    [1,4,7], [2,5,8], [3,6,9],
-    [1,5,9], [3,5,7]
+    [0,1,2], [3,4,5], [6,7,8],
+    [0,3,6], [1,4,7], [2,5,8], 
+    [0,4,8], [2,4,6]
 ]; 
 
 const Gameboard = ()=>{
     return ["", "", "", "","", "","","", ""];
 }
-const Player = (mark, name) =>{
-    return {mark, name};
-}
-const humanPlayer = Player('X', "cross");
-const aiPlayer = Player('O', "circle");
+const humanPlayer = 'X'
+const aiPlayer = 'O'
 const originalBoard = Gameboard();
 
-let currentPlayer = humanPlayer.mark;
+let currentPlayer = humanPlayer;
 
 function displayBoard(board){
     board.forEach((element, index) => {
@@ -33,17 +30,39 @@ function displayBoard(board){
     return board;
 }
 function switchPlayer(){
-    currentPlayer === humanPlayer.mark ? currentPlayer = aiPlayer.mark : currentPlayer = humanPlayer.mark;
-    checkWinner(originalBoard, humanPlayer)
+    currentPlayer === humanPlayer ? currentPlayer = aiPlayer : currentPlayer = humanPlayer;
+    let gameWinner = checkWinner(originalBoard, humanPlayer);
+    if(gameWinner) console.log(gameWinner)
 }
 function checkWinner(board, player){
-    playerPositions = board.filter((field) => field === player.mark);
-    console.log(`Player positions ${playerPositions}`);
-    
+    const playerPositions = [];
+    let winner = null;
+    board.forEach((element, index)=>{
+        if(element === player){
+            playerPositions.push(index)
+        }
+    })
+    for(let array in winConfig){
+        if(isSubset(playerPositions, winConfig[array])){
+            winner = {index: winConfig[array], player: player};
+            break;
+        }
+    }
+    console.log(winner)
+    return winner;
+}
+function isSubset(mainArr, subArray){
+    for (let el in subArray){
+        if (!mainArr.includes(subArray[el])){
+            return false;
+        }
+    } return true;
+}
+function gameOver(winner){
+
 }
 
-
-displayBoard(originalBoard)
+displayBoard(originalBoard);
  
 
 
