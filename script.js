@@ -11,20 +11,22 @@ const Gameboard = ()=>{
 const humanPlayer = 'X'
 const aiPlayer = 'O'
 const originalBoard = Gameboard();
-
 let currentPlayer = humanPlayer;
+let gameStatus = "active";
 
 function displayBoard(board){
-    board.forEach((element, index) => {
+    board.forEach((_element, index) => {
         const field = document.createElement('div');
-        field.classList.add('cube')
-        field.id = index;
-        field.addEventListener('click', ()=>{
-            field.textContent = currentPlayer;
-            board[index] = currentPlayer;
-            console.log(board)
-            switchPlayer()
-        })
+        field.classList.add('cube');
+        field.id = index; 
+        field.addEventListener('click', function mycall() {
+            if(!field.textContent && gameStatus ==="active"){
+                field.textContent = currentPlayer;
+                board[field.id] = currentPlayer;
+                console.log(board);
+                switchPlayer();
+            }
+        });
         gameDisplay.appendChild(field);
     })
     return board;
@@ -32,7 +34,11 @@ function displayBoard(board){
 function switchPlayer(){
     currentPlayer === humanPlayer ? currentPlayer = aiPlayer : currentPlayer = humanPlayer;
     let gameWinner = checkWinner(originalBoard, humanPlayer);
-    if(gameWinner) console.log(gameWinner)
+    if(gameWinner){
+        gameOver(gameWinner);
+        gameStatus = "over"
+    }
+    
 }
 function checkWinner(board, player){
     const playerPositions = [];
@@ -48,7 +54,6 @@ function checkWinner(board, player){
             break;
         }
     }
-    console.log(winner)
     return winner;
 }
 function isSubset(mainArr, subArray){
@@ -58,8 +63,10 @@ function isSubset(mainArr, subArray){
         }
     } return true;
 }
-function gameOver(winner){
-
+function gameOver(winner){  
+    for (let element in winner.index){
+        document.getElementById(winner.index[element]).style.backgroundColor = "pink";
+    }
 }
 
 displayBoard(originalBoard);
