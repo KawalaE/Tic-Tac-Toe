@@ -1,9 +1,9 @@
 <br>
 <h3>This project showacases a web-based implementation of Tic Tac Toe game, created using JavaScript, HTML and CSS. </h3>
 <h2><a href="https://kawalae.github.io/Tic-Tac-Toe/">Click here to view!</a></h2>
-<br>
+<br></br>
 ***
-<br>
+
 <h2><strong>Technologies used</strong></h2>
 <br>
 <div style="display:flex;">
@@ -12,7 +12,6 @@
 <img src="Pictures/html.svg"></img>
 <img src="Pictures/eslint.svg"></img>
 </div>
-<br>
 
 ***
 <br>
