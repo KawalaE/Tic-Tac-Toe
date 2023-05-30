@@ -26,6 +26,18 @@ function modalHandler(){
         }
     }
 }
+function isBoardFull(){
+    let counter = 0
+    document.querySelectorAll('.cube').forEach((el)=>{
+        if(el.hasChildNodes()){
+            counter +=1;
+        } 
+    });
+    if (counter === 9){
+        return true;
+    } else return false;
+    
+}
 modalHandler();
 function clearGameBoard(){
     document.querySelectorAll('.cube').forEach((cube)=>{
@@ -77,6 +89,11 @@ function checkScore(){
             gameStatus.textContent = "O wins!";
             modal.showModal();
             gamePause()
+        }else if (isBoardFull()){
+            gameStatus.textContent = "It's a tie!";
+            modal.close()
+            modal.showModal();
+            gamePause();
         }
     })
 }
